@@ -1,0 +1,22 @@
+<html>
+
+    <head>
+        <title>Currency</title>
+    </head>
+        <body>
+
+            {% if current_currency %}
+                <ul>
+                    {% for currency in current_currency %}
+                        <p>Currency: {{ currency.name }} </p>
+                        <p>Cost: {{ currency.cost }} </p>
+                        <p>Last update: {{ currency.pub_date }} </p>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No data are available.</p>
+            {% endif %}
+
+        </body>
+</html>
+
