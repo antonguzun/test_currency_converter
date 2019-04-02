@@ -6,13 +6,26 @@
         <body>
 
             {% if current_currency %}
-                <ul>
-                    {% for currency in current_currency %}
-                        <p>Currency: {{ currency.name }} </p>
-                        <p>Cost: {{ currency.cost }} </p>
-                        <p>Last update: {{ currency.pub_date }} </p>
-                    {% endfor %}
-                </ul>
+                {% for currency in current_currency %}
+
+                    <table>
+
+                        <tr>
+                         <th scope="col">USD</th>
+                         <th scope="col">EUR</th>
+                         <th scope="col">CKZ</th>
+                         <th scope="col">PLN</th>
+                        </tr>
+                        <tr>
+                         <td>{{ currency.usd_cost }}</td>
+                         <td>{{ currency.euro_cost }}</td>
+
+                         <td>{{ currency.czk_cost }}</td>
+                         <td>{{ currency.pln_cost }}</td>
+                        </tr>
+                    </table>
+                    <p>Last update: {{ currency.pub_date }} </p>
+                {% endfor %}
             {% else %}
                 <p>No data are available.</p>
             {% endif %}
