@@ -45,7 +45,8 @@ currency_currency = Table(
 engine = create_engine('postgresql+psycopg2://postgres:1234@localhost:5432/currency_db')
 conn = engine.connect()
 
-conn.execute(currency_currency.insert().values(usd_cost=USD, euro_cost=EUR, czk_cost=CZK, pln_cost=PLN,
-                                               pub_date = datetime.datetime.today())
-)
+#conn.execute(currency_currency.insert().values(usd_cost=USD, euro_cost=EUR, czk_cost=CZK, pln_cost=PLN,
+#                                               pub_date = datetime.datetime.today())
+#)
 
+show_table(conn)
