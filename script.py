@@ -31,10 +31,12 @@ print("costs: ", USD, EUR, PLN, CZK)
 conn = psycopg2.connect("dbname=currency_db user=postgres password=1234 host=localhost")
 cur = conn.cursor()
 
-cur.execute("""
-    INSERT INTO currency_currency (usd_cost, euro_cost, czk_cost, pln_cost, pub_date) VALUES (%s, %s, %s, %s, %s);
-    """,
-    (USD, EUR, CZK, PLN, datetime.datetime.today() ))
+#cur.execute("""
+#    INSERT INTO currency_currency (usd_cost, euro_cost, czk_cost, pln_cost, pub_date) VALUES (%s, %s, %s, %s, %s);
+#    """,
+#    (USD, EUR, CZK, PLN, datetime.datetime.today() ))
+
+show_table()
 
 conn.commit()
 

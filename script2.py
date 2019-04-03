@@ -49,4 +49,3 @@ conn.execute(currency_currency.insert().values(usd_cost=USD, euro_cost=EUR, czk_
                                                pub_date = datetime.datetime.today())
 )
 
-
