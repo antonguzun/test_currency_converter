@@ -3,33 +3,59 @@
     <head>
         <title>Currency</title>
     </head>
-        <body>
+    {% if error_message %}
+        {{ error_message }}
+    {% endif %}
+        <form action="{% url 'currency:convert'%}" method="post">
+            {% csrf_token %}
+        From:
+
+            <select name="from_currency" selected="euro_cost">
+              <option value="usd_cost">USD</option>
+              <option value="euro_cost">EUR</option>
+              <option value="czk_cost">CZK</option>
+              <option value="pln_cost">PLN</option>
+            </select>
+            {% if qty_from_currency %}
+                Qty: <input type="number" name="qty_from" value={{ qty_from_currency }}><br>
+            {% else %}
+                Qty: <input type="number" name="qty_from" value='1'><br>
+            {% endif %}
+            <br>
+        To: <select name="to_currency">
+              <option value="usd_cost">USD</option>
+              <option value="euro_cost">EUR</option>
+              <option value="czk_cost">CZK</option>
+              <option value="pln_cost">PLN</option>
+            </select>
+            {% if qty_to_currency %}
+                Qty: {{ qty_to_currency }}<br>
+            {% endif %}
+
+        <input type="submit" value="convert">
+
+            <p>Last update: {{ pub_date }} </p>
+        </form>
 
             {% if current_currency %}
                 {% for currency in current_currency %}
-
                     <table>
-
                         <tr>
-                         <th scope="col">USD</th>
-                         <th scope="col">EUR</th>
-                         <th scope="col">CKZ</th>
-                         <th scope="col">PLN</th>
+                            <th scope="col">USD</th>
+                            <th scope="col">EUR</th>
+                            <th scope="col">CKZ</th>
+                            <th scope="col">PLN</th>
                         </tr>
                         <tr>
-                         <td>{{ currency.usd_cost }}</td>
-                         <td>{{ currency.euro_cost }}</td>
-
-                         <td>{{ currency.czk_cost }}</td>
-                         <td>{{ currency.pln_cost }}</td>
+                            <td>{{ currency.usd_cost }}</td>
+                            <td>{{ currency.euro_cost }}</td>
+                            <td>{{ currency.czk_cost }}</td>
+                            <td>{{ currency.pln_cost }}</td>
                         </tr>
                     </table>
                     <p>Last update: {{ currency.pub_date }} </p>
                 {% endfor %}
             {% else %}
-                <p>No data are available.</p>
             {% endif %}
-
-        </body>
 </html>
 
