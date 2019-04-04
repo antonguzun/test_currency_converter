@@ -51,4 +51,4 @@ conn.execute(currency_currency.insert().values(usd_cost=USD,
                                                pub_date = datetime.datetime.today()
                                                )
              )
-show_table(conn)
+#show_table(conn)

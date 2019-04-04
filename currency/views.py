@@ -5,6 +5,12 @@ from .models import Currency
 from .forms import ConvertForm
 
 
+def convert(cost_from_currency, qty_from_currency, cost_to_currency):
+    quantity = cost_to_currency * int(qty_from_currency)/cost_from_currency
+    quantity = round(quantity, 2)
+    return quantity
+
+
 class FormView(View):
     form_class = ConvertForm
     initial = {'key': 'value'}
@@ -24,20 +30,17 @@ class FormView(View):
 
             current_currency = Currency.objects.order_by('-pub_date')[:1]\
                 .values(from_currency_pointer, to_currency_pointer)
-            cost_from = current_currency[0][from_currency_pointer]
-            cost_to = current_currency[0][to_currency_pointer]
-
-            to_qty = cost_to * int(from_qty)/cost_from
-            to_qty = round(to_qty, 2)
+            current_currency = current_currency[0]
+            cost_from = current_currency[from_currency_pointer]
+            cost_to = current_currency[to_currency_pointer]
 
             data = {
                     'from_currency_qty': from_qty,
-                    'to_currency_qty': to_qty,
+                    'to_currency_qty': convert(cost_from, from_qty, cost_to),
                     'From': form['From'].value(),
                     'To': form['To'].value(),
                     }
             form = ConvertForm(data)
-
             return render(request, self.template_name, {'form': form})
 
         return render(request, self.template_name, {'form': form})
