@@ -1,5 +1,5 @@
 # script.py
-from sqlalchemy import create_engine, MetaData, Table, Column, Integer, Date, Float
+from sqlalchemy import create_engine, MetaData, Table, Column, Integer, Date, Float, String
 import requests
 import ast
 import datetime
@@ -29,7 +29,7 @@ USD = 1.0
 EUR = rates.get('EUR')
 CZK = rates.get('CZK')
 PLN = rates.get('PLN')
-print("costs: ", USD, EUR, PLN, CZK)
+#print("costs: ", USD, EUR, PLN, CZK)
 
 meta = MetaData()
 currency_currency = Table(
@@ -44,9 +44,11 @@ currency_currency = Table(
 
 engine = create_engine('postgresql+psycopg2://postgres:1234@localhost:5432/currency_db')
 conn = engine.connect()
-
-#conn.execute(currency_currency.insert().values(usd_cost=USD, euro_cost=EUR, czk_cost=CZK, pln_cost=PLN,
-#                                               pub_date = datetime.datetime.today())
-#)
-
+conn.execute(currency_currency.insert().values(usd_cost=USD,
+                                               euro_cost=EUR,
+                                               czk_cost=CZK,
+                                               pln_cost=PLN,
+                                               pub_date = datetime.datetime.today()
+                                               )
+             )
 show_table(conn)

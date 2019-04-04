@@ -1,13 +1,9 @@
 from django.urls import path
 
-from . import views
+from .views import FormView
 
 app_name = 'currency'
 urlpatterns = [
-    # ex: /currency/
-    path('', views.index, name='index'),
-    # ex: /currency/2/
-    path('<int:currency_data>/', views.detail, name='detail'),
-    path('convert/', views.convert, name='convert'),
-
+    # ex: /currency
+    path('', FormView.as_view(), name='convert'),
 ]
