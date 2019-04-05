@@ -1,0 +1,16 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+django_generate_secret_key/__init__.py
+django_generate_secret_key/tests.py
+django_generate_secret_key.egg-info/PKG-INFO
+django_generate_secret_key.egg-info/SOURCES.txt
+django_generate_secret_key.egg-info/dependency_links.txt
+django_generate_secret_key.egg-info/requires.txt
+django_generate_secret_key.egg-info/top_level.txt
+django_generate_secret_key/management/__init__.py
+django_generate_secret_key/management/commands/__init__.py
+django_generate_secret_key/management/commands/_private.py
+django_generate_secret_key/management/commands/generate_secret_key.py
