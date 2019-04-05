@@ -25,7 +25,7 @@ def show_table(conn):
 
 
 rates = request_rates()
-USD = 1.0 # the base currency
+USD = 1.0                   # the base currency
 EUR = rates.get('EUR')
 CZK = rates.get('CZK')
 PLN = rates.get('PLN')
@@ -47,7 +47,7 @@ conn.execute(currency_currency.insert().values(usd_cost=USD,
                                                euro_cost=EUR,
                                                czk_cost=CZK,
                                                pln_cost=PLN,
-                                               pub_date = datetime.datetime.today()
+                                               pub_date=datetime.datetime.today()
                                                )
              )
 #show_table(conn)
