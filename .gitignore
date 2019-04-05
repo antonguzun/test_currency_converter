@@ -1,2 +1,3 @@
 .idea/
-cur_conv/secrets.json
+/cur_conv/secrets.json
+secrets.json
