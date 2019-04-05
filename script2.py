@@ -1,5 +1,6 @@
-# script.py
-from sqlalchemy import create_engine, MetaData, Table, Column, Integer, Date, Float, String
+# script2.py
+# crontab use this script for update currencies courses
+from sqlalchemy import create_engine, MetaData, Table, Column, Integer, Date, Float
 import requests
 import ast
 import datetime
@@ -8,7 +9,6 @@ import datetime
 def request_rates():
     APP_ID = 'ccde7c3d874247a7a12dd01c4dce5ea2'
     a = requests.get('https://openexchangerates.org/api/latest.json?app_id=' + APP_ID)
-
     data = ast.literal_eval(a.text)
     rates = data.get('rates')
     return rates
@@ -25,11 +25,10 @@ def show_table(conn):
 
 
 rates = request_rates()
-USD = 1.0
+USD = 1.0 # the base currency
 EUR = rates.get('EUR')
 CZK = rates.get('CZK')
 PLN = rates.get('PLN')
-#print("costs: ", USD, EUR, PLN, CZK)
 
 meta = MetaData()
 currency_currency = Table(

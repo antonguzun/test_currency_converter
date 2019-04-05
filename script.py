@@ -1,4 +1,4 @@
-# script.py
+# script.py not used
 import requests
 import ast
 import psycopg2
